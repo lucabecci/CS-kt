@@ -72,4 +72,27 @@ class DirectGraph<T> {
         return visited
     }
 
+    fun breadthFirstSearch(vertex: T): MutableSet<T> {
+        val visited: MutableSet<T> = mutableSetOf<T>()
+        val queue = ArrayDeque<T>()
+
+        queue.add(vertex)
+        visited.add(vertex)
+
+        while(queue.isNotEmpty()) {
+            val currentVertex = queue.removeFirst()
+            println("Current Vertex: $currentVertex")
+
+
+            for (neighbor in getNeighbors(currentVertex)) {
+                if(neighbor !in visited) {
+                    visited.add(neighbor)
+                    queue.add(neighbor)
+                }
+            }
+        }
+
+        return visited
+    }
+
 }
