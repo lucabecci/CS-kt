@@ -57,4 +57,16 @@ class SingleLinkedList<T> {
         }
         return false
     }
+
+    fun values(): List<T> {
+        val listOfNodes = mutableListOf<T>()
+
+        var actual = head
+        while (actual != null) {
+            listOfNodes.add(actual.node)
+            actual = actual.next
+        }
+
+        return listOfNodes
+    }
 }

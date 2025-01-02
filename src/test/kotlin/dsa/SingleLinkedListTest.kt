@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Assertions.*
 
 class SingleLinkedListTest {
     private lateinit var linkedList: SingleLinkedList<String>
+    private val nodeA = "A"
+    private val nodeB = "B"
+    private val nodeC = "C"
 
     @BeforeEach()
     fun setup() {
@@ -16,10 +19,6 @@ class SingleLinkedListTest {
 
     @Test
     fun `Find a valid Node`() {
-        val nodeA = "A"
-        val nodeB = "B"
-        val nodeC = "C"
-
         linkedList.lastInsert(nodeC)
         linkedList.lastInsert(nodeB)
         linkedList.lastInsert(nodeA)
@@ -31,10 +30,6 @@ class SingleLinkedListTest {
 
     @Test
     fun `Find a invalid Node`() {
-        val nodeA = "A"
-        val nodeB = "B"
-        val nodeC = "C"
-
         linkedList.earlyInsert(nodeC)
         linkedList.earlyInsert(nodeA)
 
@@ -45,10 +40,6 @@ class SingleLinkedListTest {
 
     @Test
     fun `Delete a Node`() {
-        val nodeA = "A"
-        val nodeB = "B"
-        val nodeC = "C"
-
         linkedList.earlyInsert(nodeC)
         linkedList.earlyInsert(nodeB)
         linkedList.earlyInsert(nodeA)
@@ -62,5 +53,20 @@ class SingleLinkedListTest {
 
         val findResultAfterDeleteOperation = linkedList.find(nodeB)
         assertFalse(findResultAfterDeleteOperation)
+    }
+
+    @Test
+    fun `Get all Nodes`() {
+        val expectedList = listOf(nodeC, nodeB, nodeA)
+
+        linkedList.earlyInsert(nodeC)
+        linkedList.lastInsert(nodeB)
+        linkedList.lastInsert(nodeA)
+
+        val values = linkedList.values()
+
+        assertNotNull(values)
+
+        assertEquals(expectedList, values)
     }
 }
