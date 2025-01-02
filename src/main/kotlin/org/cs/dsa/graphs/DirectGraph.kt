@@ -1,4 +1,4 @@
-package org.cs.dsa
+package org.cs.dsa.graphs
 
 /**
  * A Direct Graph implementation with:

@@ -1,6 +1,6 @@
 package org.cs
 
-import org.cs.dsa.DirectGraph
+import org.cs.dsa.graphs.DirectGraph
 
 fun main() {
     val graph = DirectGraph<String>()
