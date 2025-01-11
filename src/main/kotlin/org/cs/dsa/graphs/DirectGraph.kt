@@ -17,7 +17,6 @@ class DirectGraph<T>:Graph<T> {
         }
     }
 
-
     override fun addListOfVertex(listOfVertex: List<T>) {
         for (vertex in listOfVertex){
             addVertex(vertex)
@@ -31,40 +30,13 @@ class DirectGraph<T>:Graph<T> {
         state[from]?.add(to)
     }
 
-
     override fun getNeighbors(vertex: T): List<T> {
         return state[vertex] ?: emptyList()
     }
-
-
 
     override fun print() {
         for ((vertex, neighbors) in state) {
             println("Vertex: $vertex \n Neighbors $neighbors")
         }
     }
-
-    fun breadthFirstSearch(vertex: T): MutableSet<T> {
-        val visited: MutableSet<T> = mutableSetOf<T>()
-        val queue = ArrayDeque<T>()
-
-        queue.add(vertex)
-        visited.add(vertex)
-
-        while(queue.isNotEmpty()) {
-            val currentVertex = queue.removeFirst()
-            println("Current Vertex: $currentVertex")
-
-
-            for (neighbor in getNeighbors(currentVertex)) {
-                if(neighbor !in visited) {
-                    visited.add(neighbor)
-                    queue.add(neighbor)
-                }
-            }
-        }
-
-        return visited
-    }
-
 }
