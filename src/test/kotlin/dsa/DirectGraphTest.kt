@@ -1,5 +1,6 @@
 package dsa
 
+import org.cs.dsa.graphs.DepthFirstSearch
 import org.cs.dsa.graphs.DirectGraph
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.*
@@ -64,7 +65,8 @@ class DirectGraphTest {
         directGraph.addEdge(vertexB, vertexC)
         directGraph.addEdge(vertexC, vertexD)
 
-        val dfsResult = directGraph.depthFirstSearch(vertexA).toList()
+        val depthFirstSearch = DepthFirstSearch<String>()
+        val dfsResult = depthFirstSearch.execute(vertexA, directGraph).toList()
         assertEquals(4, dfsResult.size)
         assertEquals(vertexA, dfsResult[0])
         assertEquals(vertexB, dfsResult[1])
@@ -97,7 +99,8 @@ class DirectGraphTest {
         graph.addEdge(vertexD, vertexE)
         graph.addEdge(vertexC, vertexF)
 
-        val dfsResult = graph.depthFirstSearch(vertexA).toList()
+        val depthFirstSearch = DepthFirstSearch<String>()
+        val dfsResult = depthFirstSearch.execute(vertexA, graph).toList()
 
         assertEquals(6, dfsResult.size)
         assertEquals(listOf(vertexA, vertexB, vertexC, vertexF, vertexD, vertexE), dfsResult)
