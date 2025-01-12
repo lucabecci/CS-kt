@@ -93,4 +93,24 @@ class BinarySearchTreeTest {
         }
 
     }
+
+    @Test
+    fun `Run height`() {
+        val listOfNodeValues = listOf(1, 22, -1, 2, 44, 23)
+
+        val comparator = Comparator<Int>{a, b -> a - b}
+
+        listOfNodeValues.forEach{
+                node -> binarySearchTree.insert(node, comparator)
+        }
+
+        val expectedResult= 4
+
+        assertDoesNotThrow {
+            val result = binarySearchTree.height(binarySearchTree.getRoot())
+            Assertions.assertNotNull(result)
+            Assertions.assertEquals(expectedResult, result)
+        }
+
+    }
 }
