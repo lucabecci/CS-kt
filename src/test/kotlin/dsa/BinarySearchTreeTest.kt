@@ -1,6 +1,9 @@
 package dsa
 
 import org.cs.dsa.tree.BinarySearchTree
+import org.cs.dsa.tree.algorithms.InOrderTraversal
+import org.cs.dsa.tree.algorithms.PostOrderTraversal
+import org.cs.dsa.tree.algorithms.PreOrderTraversal
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -61,8 +64,9 @@ class BinarySearchTreeTest {
          */
         val expectedSequence = listOf(nodeC, nodeA, nodeB)
 
+        val irOrderTraversalAlgorithm = InOrderTraversal<Int>()
         assertDoesNotThrow {
-            val sequenceResult = binarySearchTree.inOrderTraversal(binarySearchTree.getRoot())
+            val sequenceResult = irOrderTraversalAlgorithm.execute(binarySearchTree.getRoot())
             Assertions.assertEquals(sequenceResult.size, 3)
             Assertions.assertEquals(expectedSequence, sequenceResult)
         }
@@ -85,9 +89,62 @@ class BinarySearchTreeTest {
          *  22 LEFT + 1 ROOT + -1 RIGHT
          */
         val expectedSequence = listOf(nodeB, nodeA, nodeC)
+        val irOrderTraversalAlgorithm = InOrderTraversal<Int>()
 
         assertDoesNotThrow {
-            val sequenceResult = binarySearchTree.inOrderTraversal(binarySearchTree.getRoot())
+            val sequenceResult = irOrderTraversalAlgorithm.execute(binarySearchTree.getRoot())
+            Assertions.assertEquals(sequenceResult.size, 3)
+            Assertions.assertEquals(expectedSequence, sequenceResult)
+        }
+
+    }
+
+    @Test
+    fun `Run in pre order traversal`() {
+        val nodeA = 1
+        val nodeB = 22
+        val nodeC = -1
+
+        val comparator = Comparator<Int>{a, b -> a - b}
+
+        binarySearchTree.insert(nodeA, comparator)
+        binarySearchTree.insert(nodeC, comparator)
+        binarySearchTree.insert(nodeB, comparator)
+
+        /**
+         *  1 ROOT + -1 LEFT + 22 RIGHT
+         */
+        val expectedSequence = listOf(nodeA, nodeC, nodeB)
+
+        val preOrderTraversalAlgorithm = PreOrderTraversal<Int>()
+        assertDoesNotThrow {
+            val sequenceResult = preOrderTraversalAlgorithm.execute(binarySearchTree.getRoot())
+            Assertions.assertEquals(sequenceResult.size, 3)
+            Assertions.assertEquals(expectedSequence, sequenceResult)
+        }
+
+    }
+
+    @Test
+    fun `Run in post order traversal`() {
+        val nodeA = 1
+        val nodeB = 22
+        val nodeC = -1
+
+        val comparator = Comparator<Int>{a, b -> a - b}
+
+        binarySearchTree.insert(nodeA, comparator)
+        binarySearchTree.insert(nodeC, comparator)
+        binarySearchTree.insert(nodeB, comparator)
+
+        /**
+         *   -1 LEFT + 22 RIGHT + 1 ROOT
+         */
+        val expectedSequence = listOf(nodeC, nodeB, nodeA)
+
+        val postOrderTraversalAlgorithm = PostOrderTraversal<Int>()
+        assertDoesNotThrow {
+            val sequenceResult = postOrderTraversalAlgorithm.execute(binarySearchTree.getRoot())
             Assertions.assertEquals(sequenceResult.size, 3)
             Assertions.assertEquals(expectedSequence, sequenceResult)
         }

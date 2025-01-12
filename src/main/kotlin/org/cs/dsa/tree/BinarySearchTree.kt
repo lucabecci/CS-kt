@@ -10,15 +10,14 @@ class BinarySearchTree<T> {
         root = insertRecursively(root, value, comparator)
     }
 
-    fun inOrderTraversal(node: TreeNode<T>?, result: MutableList<T> = mutableListOf()): List<T> {
-        if(node != null){
-            inOrderTraversal(node.left, result)
-            println("Node: ${node.value}")
-            result.add(node.value)
-            inOrderTraversal(node.right, result)
 
+
+    fun <T> preOrderTraversal(node: TreeNode<T>?) {
+        if (node != null) {
+            println(node.value)
+            preOrderTraversal(node.left)
+            preOrderTraversal(node.right)
         }
-        return result
     }
 
     fun height(node: TreeNode<T>?): Int {
